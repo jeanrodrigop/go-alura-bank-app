@@ -1,29 +1,17 @@
 package main
 
-import "fmt"
-
-type ContaCorrente struct {
-	titular       string
-	numeroAgencia int
-	numeroConta   int
-	saldo         float32
-}
+import (
+	"banco/contas"
+	"fmt"
+)
 
 func main() {
-	contaDoJean := ContaCorrente{"Jean Rodrigo", 589, 123456, 125.5}
+	contaDoJean := contas.ContaCorrente{"Jean", 589, 123456, 300}
+	contaDoRodrigo := contas.ContaCorrente{"Rodrigo", 589, 111333, 150.5}
 
-	fmt.Println(contaDoJean.saldo)
+	status := contaDoJean.Transferir(200, &contaDoRodrigo)
 
-	fmt.Println(contaDoJean.sacar(80))
-	fmt.Println(contaDoJean.saldo)
-}
-
-func (c *ContaCorrente) sacar(valorDoSaque float32) string {
-	podeSacar := valorDoSaque > 0 && valorDoSaque <= c.saldo
-	if podeSacar {
-		c.saldo -= valorDoSaque
-		return "Saque realizado com sucesso"
-	} else {
-		return "Saldo insulficiente"
-	}
+	fmt.Println(status)
+	fmt.Println(contaDoJean)
+	fmt.Println(contaDoRodrigo)
 }
