@@ -5,10 +5,9 @@ import (
 )
 
 type ContaCorrente struct {
-	Titular       clientes.Titular
-	NumeroAgencia int
-	NumeroConta   int
-	saldo         float32
+	Titular                    clientes.Titular
+	NumeroAgencia, NumeroConta int
+	saldo                      float32
 }
 
 func (c *ContaCorrente) Sacar(valorDoSaque float32) string {
